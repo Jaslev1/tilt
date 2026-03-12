@@ -20,7 +20,6 @@
   }
 
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--black);
     color: var(--off-white);
@@ -55,11 +54,12 @@
   }
   nav::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(to bottom, rgba(8,8,8,0.92) 0%, transparent 100%);
     pointer-events: none;
   }
+
+  /* V3 NAV LOGO — 3rem, integrated tagline */
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3rem;
@@ -72,43 +72,38 @@
     display: flex;
     align-items: center;
   }
-  .nav-logo .accent { color: var(--acid); }
-  .nav-logo .sub {
+  .nav-logo .t { color: var(--acid); }
+  .nav-logo .tagline {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.6rem;
     font-weight: 300;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-dim);
-    margin-left: 16px;
-    line-height: 1.45;
+    margin-left: 14px;
+    line-height: 1.5;
     white-space: nowrap;
+    border-left: 1px solid rgba(242,237,230,0.15);
+    padding-left: 14px;
   }
+
   .nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-    position: relative;
-    z-index: 1;
+    display: flex; gap: 40px; list-style: none;
+    position: relative; z-index: 1;
   }
   .nav-links a {
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--warm-mid);
-    text-decoration: none;
-    transition: color 0.25s;
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--warm-mid);
+    text-decoration: none; transition: color 0.25s;
   }
   .nav-links a:hover { color: var(--acid); }
 
   /* HERO */
   .hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: 1fr auto;
+    display: grid; grid-template-rows: 1fr auto;
     padding: 0 48px 60px;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0;
@@ -123,32 +118,21 @@
     100% { transform: translate(80px,80px); }
   }
   .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-top: 140px;
-    position: relative;
-    z-index: 2;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-top: 140px; position: relative; z-index: 2;
   }
   .hero-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--acid);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.3s ease forwards;
+    font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--acid); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards;
   }
   .hero-headline {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(5rem, 14vw, 13rem);
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    overflow: hidden;
+    line-height: 0.88; letter-spacing: -0.01em; overflow: hidden;
   }
   .hero-line {
-    display: block;
-    opacity: 0;
+    display: block; opacity: 0;
     transform: translateY(100%);
     animation: slideUp 0.9s ease forwards;
   }
@@ -165,48 +149,25 @@
     to   { opacity:1; transform:translateY(0); }
   }
   .hero-sub {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 64px;
-    opacity: 0;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-top: 64px; opacity: 0;
     animation: fadeUp 0.8s 1.2s ease forwards;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
-  .hero-descriptor {
-    max-width: 380px;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--warm-mid);
-  }
+  .hero-descriptor { max-width: 380px; font-size: 1rem; line-height: 1.7; color: var(--warm-mid); }
   .hero-descriptor strong { color: var(--off-white); font-weight: 500; }
   .hero-stat-group { display: flex; gap: 48px; }
   .hero-stat { text-align: right; }
   .hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8rem;
-    color: var(--acid);
-    line-height: 1;
-    display: block;
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+    color: var(--acid); line-height: 1; display: block;
   }
-  .hero-stat-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
+  .hero-stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
   .scroll-indicator {
-    position: absolute;
-    bottom: 60px; left: 50%;
+    position: absolute; bottom: 60px; left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s 1.6s ease forwards;
-    z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.8s 1.6s ease forwards; z-index: 2;
   }
   .scroll-line {
     width: 1px; height: 60px;
@@ -218,348 +179,182 @@
     50%      { transform:scaleY(0.6); opacity:0.4; }
   }
   .scroll-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    writing-mode: vertical-rl;
+    font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--text-dim); writing-mode: vertical-rl;
   }
 
   /* MARQUEE */
-  .marquee-section {
-    overflow: hidden;
-    padding: 20px 0;
-    background: var(--acid);
-  }
-  .marquee-track {
-    display: flex;
-    animation: marquee 18s linear infinite;
-    white-space: nowrap;
-  }
+  .marquee-section { overflow: hidden; padding: 20px 0; background: var(--acid); }
+  .marquee-track { display: flex; animation: marquee 18s linear infinite; white-space: nowrap; }
   .marquee-item {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.15em;
-    color: var(--black);
-    padding: 0 40px;
-    flex-shrink: 0;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
+    letter-spacing: 0.15em; color: var(--black); padding: 0 40px; flex-shrink: 0;
   }
-  .marquee-dot {
-    font-size: 1.4rem;
-    color: rgba(8,8,8,0.3);
-    flex-shrink: 0;
-    line-height: 1;
-    padding-right: 40px;
-  }
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  .marquee-dot { font-size: 1.4rem; color: rgba(8,8,8,0.3); flex-shrink: 0; line-height: 1; padding-right: 40px; }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
   /* BELIEFS */
   .section { padding: 120px 48px; }
   .section-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--acid);
-    margin-bottom: 64px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--acid); margin-bottom: 64px;
+    display: flex; align-items: center; gap: 16px;
   }
   .section-label::before { content:''; width:40px; height:1px; background:var(--acid); }
-  .beliefs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+  .beliefs-grid { display: grid; grid-template-columns: 1fr 1fr; }
   .belief-item {
-    padding: 48px;
-    border: 1px solid rgba(242,237,230,0.06);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
+    padding: 48px; border: 1px solid rgba(242,237,230,0.06);
+    position: relative; overflow: hidden; transition: border-color 0.3s;
   }
   .belief-item::before {
-    content: '';
-    position: absolute; inset: 0;
+    content:''; position:absolute; inset:0;
     background: linear-gradient(135deg, rgba(212,245,60,0.04) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s;
+    opacity:0; transition: opacity 0.4s;
   }
   .belief-item:hover { border-color: rgba(212,245,60,0.25); }
-  .belief-item:hover::before { opacity: 1; }
+  .belief-item:hover::before { opacity:1; }
   .belief-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem;
-    color: rgba(242,237,230,0.05);
-    line-height: 1;
-    margin-bottom: 24px;
-    display: block;
+    font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+    color: rgba(242,237,230,0.05); line-height: 1; margin-bottom: 24px; display: block;
   }
   .belief-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    color: var(--off-white);
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+    letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 16px; color: var(--off-white);
   }
-  .belief-body {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: var(--text-dim);
-  }
+  .belief-body { font-size: 0.9rem; line-height: 1.75; color: var(--text-dim); }
 
   /* EDITORIAL */
   .editorial-block {
-    padding: 100px 48px;
-    border-top: 1px solid rgba(242,237,230,0.06);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    padding: 100px 48px; border-top: 1px solid rgba(242,237,230,0.06);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
   .editorial-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.3;
-    color: var(--off-white);
-    position: relative;
-    padding-left: 32px;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.3; color: var(--off-white);
+    position: relative; padding-left: 32px;
   }
   .editorial-quote::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 8px; bottom: 8px;
-    width: 3px;
-    background: var(--acid);
+    content:''; position:absolute; left:0; top:8px; bottom:8px; width:3px; background:var(--acid);
   }
   .editorial-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-dim); }
   .editorial-body p + p { margin-top: 20px; }
 
-  /* REACH — warm cream bg, muted terracotta */
+  /* V3 REACH — warm cream background, terracotta (NOT hot red) */
   .reach-section {
     padding: 120px 48px;
     background: var(--cream);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    text-align: center; position: relative; overflow: hidden;
   }
   .reach-section::before {
-    content: 'REACH';
-    position: absolute;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30vw;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(8,8,8,0.06);
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    white-space: nowrap;
-    pointer-events: none;
+    content:'REACH'; position:absolute;
+    font-family:'Bebas Neue',sans-serif; font-size:30vw;
+    color:transparent; -webkit-text-stroke:1px rgba(8,8,8,0.06);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    white-space:nowrap; pointer-events:none;
   }
   .reach-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 18vw, 16rem);
-    line-height: 0.9;
-    color: var(--black);
-    letter-spacing: -0.02em;
-    position: relative;
-    z-index: 1;
+    font-size: clamp(5rem, 18vw, 16rem); line-height: 0.9;
+    color: var(--black); letter-spacing: -0.02em;
+    position: relative; z-index: 1;
   }
   .reach-num span { color: var(--terracotta); }
   .reach-desc {
-    font-size: 1rem;
-    color: var(--text-dim);
-    margin-top: 24px;
-    letter-spacing: 0.05em;
-    position: relative;
-    z-index: 1;
+    font-size: 1rem; color: var(--text-dim); margin-top: 24px;
+    letter-spacing: 0.05em; position: relative; z-index: 1;
   }
   .reach-sub {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(8,8,8,0.35);
-    margin-top: 8px;
-    position: relative;
-    z-index: 1;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(8,8,8,0.35); margin-top: 8px; position: relative; z-index: 1;
   }
 
   /* NAMES */
-  .names-section {
-    padding: 120px 48px;
-    border-top: 1px solid rgba(242,237,230,0.06);
-  }
+  .names-section { padding: 120px 48px; border-top: 1px solid rgba(242,237,230,0.06); }
   .names-intro {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 80px;
-    margin-bottom: 80px;
-    align-items: end;
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 80px; margin-bottom: 80px; align-items: end;
   }
   .names-heading {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 0.95;
-    letter-spacing: 0.02em;
+    font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; letter-spacing: 0.02em;
   }
   .names-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-dim); }
   .names-flow { display: flex; flex-wrap: wrap; gap: 12px; }
   .name-tag {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    padding: 10px 24px;
-    border: 1px solid rgba(242,237,230,0.12);
-    border-radius: 2px;
-    color: var(--warm-mid);
-    transition: all 0.25s;
-    white-space: nowrap;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.08em;
+    padding: 10px 24px; border: 1px solid rgba(242,237,230,0.12); border-radius: 2px;
+    color: var(--warm-mid); transition: all 0.25s; white-space: nowrap;
   }
   .name-tag:hover { border-color: var(--acid); color: var(--off-white); background: rgba(212,245,60,0.05); }
   .name-tag.hl { border-color: rgba(212,245,60,0.3); color: var(--acid); }
 
   /* DOWNLOADS */
   .downloads-bar {
-    padding: 40px 48px;
-    background: rgba(242,237,230,0.02);
+    padding: 40px 48px; background: rgba(242,237,230,0.02);
     border-top: 1px solid rgba(242,237,230,0.06);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
   }
-  .downloads-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-right: 12px;
-  }
+  .downloads-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); margin-right: 12px; }
   .dl-btn {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    text-decoration: none;
-    padding: 10px 20px;
-    border: 1px solid rgba(242,237,230,0.15);
-    border-radius: 2px;
-    transition: all 0.25s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--off-white); text-decoration: none; padding: 10px 20px;
+    border: 1px solid rgba(242,237,230,0.15); border-radius: 2px;
+    transition: all 0.25s; display: flex; align-items: center; gap: 8px;
   }
   .dl-btn::before { content:'↓'; color: var(--acid); }
   .dl-btn:hover { border-color: var(--acid); background: rgba(212,245,60,0.05); }
 
   /* CONTACT */
   .contact-section {
-    padding: 120px 48px;
-    background: var(--acid);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    padding: 120px 48px; background: var(--acid);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
-  .contact-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 0.88;
-    color: var(--black);
-  }
-  .contact-heading em {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: rgba(8,8,8,0.35);
-  }
+  .contact-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 8rem); line-height: 0.88; color: var(--black); }
+  .contact-heading em { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(8,8,8,0.35); }
   .contact-details { display: flex; flex-direction: column; gap: 40px; }
   .contact-person { padding-bottom: 40px; border-bottom: 1px solid rgba(8,8,8,0.12); }
   .contact-person:last-child { border-bottom: none; padding-bottom: 0; }
-  .contact-role {
-    font-size: 0.6rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(8,8,8,0.45);
-    margin-bottom: 8px;
-  }
-  .contact-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 0.08em;
-    color: var(--black);
-    line-height: 1;
-    margin-bottom: 12px;
-  }
+  .contact-role { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(8,8,8,0.45); margin-bottom: 8px; }
+  .contact-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.08em; color: var(--black); line-height: 1; margin-bottom: 12px; }
   .contact-info { display: flex; flex-direction: column; gap: 4px; }
   .contact-link { font-size: 0.85rem; color: rgba(8,8,8,0.6); text-decoration: none; transition: color 0.2s; }
   .contact-link:hover { color: var(--black); }
 
-  /* FOOTER — large integrated logo */
+  /* V3 FOOTER — 2.8rem logo, integrated tagline */
   footer {
-    background: var(--black);
-    padding: 48px;
+    background: var(--black); padding: 48px;
     border-top: 1px solid rgba(242,237,230,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
   }
   .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8rem;
-    letter-spacing: 0.12em;
-    color: var(--off-white);
-    line-height: 1;
-    display: flex;
-    align-items: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+    letter-spacing: 0.12em; color: var(--off-white); line-height: 1;
+    display: flex; align-items: center;
   }
-  .footer-logo .accent { color: var(--acid); }
-  .footer-logo .sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-left: 16px;
-    line-height: 1.45;
-    white-space: nowrap;
+  .footer-logo .t { color: var(--acid); }
+  .footer-logo .tagline {
+    font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 300;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
+    margin-left: 14px; line-height: 1.5; white-space: nowrap;
+    border-left: 1px solid rgba(242,237,230,0.12); padding-left: 14px;
   }
   .footer-links { display: flex; gap: 32px; list-style: none; }
-  .footer-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--acid); }
+  /* V3 COPYRIGHT — 2026 */
   .footer-reg {
-    width: 100%;
-    padding-top: 24px;
+    width: 100%; padding-top: 24px;
     border-top: 1px solid rgba(242,237,230,0.04);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--text-dim);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-dim);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   }
 
   /* REVEAL */
   .reveal { opacity:0; transform:translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .d1 { transition-delay:0.1s; } .d2 { transition-delay:0.2s; } .d3 { transition-delay:0.3s; }
 
-  /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -568,7 +363,6 @@
     .hero { padding-bottom: 40px; }
     .beliefs-grid, .editorial-block, .names-intro, .contact-section { grid-template-columns: 1fr; gap: 40px; }
     .hero-sub { flex-direction: column; align-items: flex-start; gap: 40px; }
-    .hero-stat-group { gap: 32px; }
     .hero-stat { text-align: left; }
     footer { padding: 32px 24px; }
     .footer-logo { font-size: 2rem; }
@@ -580,11 +374,10 @@
 
 <div class="cursor" id="cursor"></div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    TIL<span class="accent">T</span>
-    <span class="sub">The Unfair<br>Advantage</span>
+    TIL<span class="t">T</span>
+    <span class="tagline">The Unfair<br>Advantage</span>
   </a>
   <ul class="nav-links">
     <li><a href="#beliefs">Our Beliefs</a></li>
@@ -594,7 +387,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -606,9 +398,7 @@
     </h1>
   </div>
   <div class="hero-sub">
-    <p class="hero-descriptor">
-      We build <strong>culture-defining content</strong> for brands that refuse to be ignored — pairing the right voices with the right audiences at the right moment.
-    </p>
+    <p class="hero-descriptor">We build <strong>culture-defining content</strong> for brands that refuse to be ignored — pairing the right voices with the right audiences at the right moment.</p>
     <div class="hero-stat-group">
       <div class="hero-stat">
         <span class="hero-stat-num">90M+</span>
@@ -626,7 +416,6 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">INFLUENCER MARKETING</span><span class="marquee-dot">·</span>
@@ -642,26 +431,25 @@
   </div>
 </div>
 
-<!-- BELIEFS -->
 <section class="section" id="beliefs">
   <p class="section-label reveal">Our Belief System</p>
   <div class="beliefs-grid">
-    <div class="belief-item reveal reveal-delay-1">
+    <div class="belief-item reveal d1">
       <span class="belief-num">01</span>
       <h3 class="belief-title">People Believe People</h3>
       <p class="belief-body">The communication landscape has fundamentally shifted. Audiences trust voices, not logos. We connect your brand to the personalities your audience already follows and believes.</p>
     </div>
-    <div class="belief-item reveal reveal-delay-2">
+    <div class="belief-item reveal d2">
       <span class="belief-num">02</span>
       <h3 class="belief-title">Make It Epic</h3>
       <p class="belief-body">In an attention economy, mediocre content is invisible content. We build campaigns that earn attention — or we don't build them at all. Make it count, or risk being ignored.</p>
     </div>
-    <div class="belief-item reveal reveal-delay-3">
+    <div class="belief-item reveal d3">
       <span class="belief-num">03</span>
       <h3 class="belief-title">Context Is Everything</h3>
       <p class="belief-body">The platforms people use are primarily social. Every piece of content we create is purpose-built for the environment where it will live — not repurposed, not adapted. Born social.</p>
     </div>
-    <div class="belief-item reveal reveal-delay-1">
+    <div class="belief-item reveal d1">
       <span class="belief-num">04</span>
       <h3 class="belief-title">Metrics Obsessed</h3>
       <p class="belief-body">Creativity without accountability is decoration. We measure performance doggedly, with organic reach exceeding 90 million on our best global campaigns. Numbers tell the truth.</p>
@@ -669,29 +457,24 @@
   </div>
 </section>
 
-<!-- EDITORIAL -->
 <div class="editorial-block" id="impact">
-  <blockquote class="editorial-quote reveal">
-    "We don't just connect brands to audiences — we make them part of the culture."
-  </blockquote>
-  <div class="editorial-body reveal reveal-delay-2">
+  <blockquote class="editorial-quote reveal">"We don't just connect brands to audiences — we make them part of the culture."</blockquote>
+  <div class="editorial-body reveal d2">
     <p>TILT was built on a simple observation: people buy from people. As brands fight for shrinking attention windows, the brands that win are those that show up in the feeds of trusted voices — authentically, contextually, memorably.</p>
     <p>We've spent years building relationships with South Africa's most influential personalities and refining the craft of social-first content. The result? Campaigns that don't just perform — they resonate.</p>
   </div>
 </div>
 
-<!-- REACH -->
 <div class="reach-section">
   <div class="reach-num reveal"><span>90</span>M+</div>
-  <p class="reach-desc reveal reveal-delay-1">Organic impressions on our best global campaign</p>
-  <p class="reach-sub reveal reveal-delay-2">Measured, verified, repeatable</p>
+  <p class="reach-desc reveal d1">Organic impressions on our best global campaign</p>
+  <p class="reach-sub reveal d2">Measured, verified, repeatable</p>
 </div>
 
-<!-- NAMES -->
 <section class="names-section" id="names">
   <div class="names-intro">
     <h2 class="names-heading reveal">Experience<br>that<br>speaks.</h2>
-    <p class="names-body reveal reveal-delay-2">We've had the privilege of working with some of the most recognisable personalities in South Africa and beyond — across sport, entertainment, lifestyle, and culture. Each collaboration is tailored, authentic, and held to the same standard: does this move the needle?</p>
+    <p class="names-body reveal d2">We've had the privilege of working with some of the most recognisable personalities in South Africa and beyond — across sport, entertainment, lifestyle, and culture. Each collaboration is tailored, authentic, and held to the same standard: does this move the needle?</p>
   </div>
   <div class="names-flow reveal">
     <span class="name-tag hl">Sir Richard Branson</span>
@@ -705,14 +488,12 @@
   </div>
 </section>
 
-<!-- DOWNLOADS -->
 <div class="downloads-bar">
   <span class="downloads-label">Downloads</span>
   <a href="https://www.tilt.co.za/wp-content/uploads/2020/03/TILT-2020.pdf" class="dl-btn" target="_blank">TILT Overview</a>
   <a href="https://www.tilt.co.za/wp-content/uploads/2024/01/TILT-Ad-hoc-services-Ts-Cs-16-01-2024.pdf" class="dl-btn" target="_blank">Terms &amp; Conditions</a>
 </div>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <h2 class="contact-heading">Let's<br><em>talk.</em></h2>
   <div class="contact-details">
@@ -742,11 +523,10 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    TIL<span class="accent">T</span>
-    <span class="sub">The Unfair<br>Advantage</span>
+    TIL<span class="t">T</span>
+    <span class="tagline">The Unfair<br>Advantage</span>
   </div>
   <ul class="footer-links">
     <li><a href="https://www.linkedin.com/company/thetilteffect/" target="_blank">LinkedIn</a></li>
