@@ -1,16 +1,17 @@
-# TILT — Website Redesign
+# TILT — Website Redesign v3
 
-A modernised single-page website for [TILT](https://www.tilt.co.za) — The Unfair Advantage.
+Modernised single-page site for [TILT](https://www.tilt.co.za) — The Unfair Advantage.
 
-## To run locally
-Just open `index.html` in any browser. No build step, no dependencies — fonts load from Google Fonts CDN.
+## Run locally
+Open `index.html` in any browser. No build step needed — fonts load via Google Fonts CDN.
 
-## To deploy on GitHub Pages
+## Deploy to GitHub Pages
 1. Push this repo to GitHub
-2. Go to **Settings → Pages**
-3. Set source to `main` branch, root folder
-4. Your site will be live at `https://yourusername.github.io/repo-name`
+2. Settings → Pages → Source: `main` branch, root `/`
+3. Live at `https://yourusername.github.io/repo-name`
 
-## Files
-- `index.html` — the full site (single file)
-- `README.md` — this file
+## Deploy to Vercel
+1. Import repo in Vercel dashboard
+2. Framework: **Other** (static)
+3. Output directory: `.` (root)
+4. Deploy

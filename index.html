@@ -16,7 +16,7 @@
     --acid: #D4F53C;
     --warm-mid: #B8A898;
     --text-dim: #6B6560;
-    --red: #C44A2A;
+    --terracotta: #C44A2A;
   }
 
   html { scroll-behavior: smooth; }
@@ -30,7 +30,6 @@
     cursor: none;
   }
 
-  /* Custom cursor */
   .cursor {
     position: fixed;
     width: 12px; height: 12px;
@@ -39,7 +38,7 @@
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    transition: width 0.3s ease, height 0.3s ease;
     mix-blend-mode: difference;
   }
   .cursor.hover { width: 48px; height: 48px; }
@@ -52,39 +51,37 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 48px;
-    mix-blend-mode: normal;
+    padding: 24px 48px;
   }
   nav::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.9) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(8,8,8,0.92) 0%, transparent 100%);
     pointer-events: none;
   }
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
+    line-height: 1;
     color: var(--off-white);
     text-decoration: none;
     position: relative;
     z-index: 1;
-    line-height: 1;
     display: flex;
     align-items: center;
-    gap: 0;
   }
-  .nav-logo span { color: var(--acid); }
-  .nav-logo::after {
-    content: '—';
+  .nav-logo .accent { color: var(--acid); }
+  .nav-logo .sub {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    color: var(--text-dim);
-    margin-left: 18px;
+    font-size: 0.6rem;
     font-weight: 300;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: 16px;
+    line-height: 1.45;
     white-space: nowrap;
   }
   .nav-links {
@@ -95,7 +92,7 @@
     z-index: 1;
   }
   .nav-links a {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--warm-mid);
@@ -113,11 +110,8 @@
     position: relative;
     overflow: hidden;
   }
-
-  /* Animated background grid */
   .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(212,245,60,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(212,245,60,0.04) 1px, transparent 1px);
@@ -125,18 +119,9 @@
     animation: gridDrift 40s linear infinite;
   }
   @keyframes gridDrift {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(80px, 80px); }
+    0%   { transform: translate(0,0); }
+    100% { transform: translate(80px,80px); }
   }
-
-  .hero-noise {
-    position: absolute;
-    inset: 0;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-  }
-
   .hero-content {
     display: flex;
     flex-direction: column;
@@ -145,7 +130,6 @@
     position: relative;
     z-index: 2;
   }
-
   .hero-eyebrow {
     font-size: 0.65rem;
     letter-spacing: 0.28em;
@@ -155,7 +139,6 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.3s ease forwards;
   }
-
   .hero-headline {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(5rem, 14vw, 13rem);
@@ -163,7 +146,6 @@
     letter-spacing: -0.01em;
     overflow: hidden;
   }
-
   .hero-line {
     display: block;
     opacity: 0;
@@ -177,15 +159,11 @@
     color: transparent;
     -webkit-text-stroke: 1px var(--off-white);
   }
-
-  @keyframes slideUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes slideUp { to { opacity:1; transform:translateY(0); } }
   @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
   }
-
   .hero-sub {
     display: flex;
     justify-content: space-between;
@@ -196,20 +174,14 @@
     position: relative;
     z-index: 2;
   }
-
   .hero-descriptor {
     max-width: 380px;
     font-size: 1rem;
     line-height: 1.7;
     color: var(--warm-mid);
-    font-weight: 300;
   }
   .hero-descriptor strong { color: var(--off-white); font-weight: 500; }
-
-  .hero-stat-group {
-    display: flex;
-    gap: 48px;
-  }
+  .hero-stat-group { display: flex; gap: 48px; }
   .hero-stat { text-align: right; }
   .hero-stat-num {
     font-family: 'Bebas Neue', sans-serif;
@@ -224,11 +196,9 @@
     text-transform: uppercase;
     color: var(--text-dim);
   }
-
   .scroll-indicator {
     position: absolute;
-    bottom: 60px;
-    left: 50%;
+    bottom: 60px; left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -239,14 +209,13 @@
     z-index: 2;
   }
   .scroll-line {
-    width: 1px;
-    height: 60px;
+    width: 1px; height: 60px;
     background: linear-gradient(to bottom, var(--acid), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
   @keyframes scrollPulse {
-    0%, 100% { transform: scaleY(1); opacity: 1; }
-    50% { transform: scaleY(0.6); opacity: 0.4; }
+    0%,100% { transform:scaleY(1); opacity:1; }
+    50%      { transform:scaleY(0.6); opacity:0.4; }
   }
   .scroll-label {
     font-size: 0.55rem;
@@ -258,15 +227,12 @@
 
   /* MARQUEE */
   .marquee-section {
-    border-top: 1px solid rgba(242,237,230,0.08);
-    border-bottom: 1px solid rgba(242,237,230,0.08);
     overflow: hidden;
     padding: 20px 0;
     background: var(--acid);
   }
   .marquee-track {
     display: flex;
-    gap: 0;
     animation: marquee 18s linear infinite;
     white-space: nowrap;
   }
@@ -280,23 +246,18 @@
   }
   .marquee-dot {
     font-size: 1.4rem;
-    color: var(--black);
-    opacity: 0.3;
+    color: rgba(8,8,8,0.3);
     flex-shrink: 0;
     line-height: 1;
     padding-right: 40px;
   }
   @keyframes marquee {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
-  /* BELIEF SECTION */
-  .section {
-    padding: 120px 48px;
-    position: relative;
-  }
-
+  /* BELIEFS */
+  .section { padding: 120px 48px; }
   .section-label {
     font-size: 0.6rem;
     letter-spacing: 0.3em;
@@ -307,19 +268,11 @@
     align-items: center;
     gap: 16px;
   }
-  .section-label::before {
-    content: '';
-    width: 40px;
-    height: 1px;
-    background: var(--acid);
-  }
-
+  .section-label::before { content:''; width:40px; height:1px; background:var(--acid); }
   .beliefs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0;
   }
-
   .belief-item {
     padding: 48px;
     border: 1px solid rgba(242,237,230,0.06);
@@ -329,15 +282,13 @@
   }
   .belief-item::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(212,245,60,0.04) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s;
   }
   .belief-item:hover { border-color: rgba(212,245,60,0.25); }
   .belief-item:hover::before { opacity: 1; }
-
   .belief-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4rem;
@@ -358,10 +309,9 @@
     font-size: 0.9rem;
     line-height: 1.75;
     color: var(--text-dim);
-    font-weight: 300;
   }
 
-  /* PEOPLE BELIEVE section - full-width editorial */
+  /* EDITORIAL */
   .editorial-block {
     padding: 100px 48px;
     border-top: 1px solid rgba(242,237,230,0.06);
@@ -370,7 +320,6 @@
     gap: 80px;
     align-items: center;
   }
-
   .editorial-quote {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -383,25 +332,17 @@
   .editorial-quote::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
+    left: 0; top: 8px; bottom: 8px;
     width: 3px;
     background: var(--acid);
   }
-
-  .editorial-body {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: var(--text-dim);
-  }
+  .editorial-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-dim); }
   .editorial-body p + p { margin-top: 20px; }
 
-  /* REACH stat section */
+  /* REACH — warm cream bg, muted terracotta */
   .reach-section {
     padding: 120px 48px;
     background: var(--cream);
-    color: var(--black);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -413,9 +354,8 @@
     font-size: 30vw;
     color: transparent;
     -webkit-text-stroke: 1px rgba(8,8,8,0.06);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
     white-space: nowrap;
     pointer-events: none;
   }
@@ -428,7 +368,7 @@
     position: relative;
     z-index: 1;
   }
-  .reach-num span { color: var(--red); }
+  .reach-num span { color: var(--terracotta); }
   .reach-desc {
     font-size: 1rem;
     color: var(--text-dim);
@@ -447,12 +387,11 @@
     z-index: 1;
   }
 
-  /* NAMES section */
+  /* NAMES */
   .names-section {
     padding: 120px 48px;
     border-top: 1px solid rgba(242,237,230,0.06);
   }
-
   .names-intro {
     display: grid;
     grid-template-columns: 1fr 1.6fr;
@@ -460,26 +399,14 @@
     margin-bottom: 80px;
     align-items: end;
   }
-
   .names-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(3rem, 6vw, 5.5rem);
     line-height: 0.95;
     letter-spacing: 0.02em;
   }
-
-  .names-body {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: var(--text-dim);
-    padding-bottom: 8px;
-  }
-
-  .names-flow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+  .names-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-dim); }
+  .names-flow { display: flex; flex-wrap: wrap; gap: 12px; }
   .name-tag {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5rem;
@@ -491,173 +418,10 @@
     transition: all 0.25s;
     white-space: nowrap;
   }
-  .name-tag:hover {
-    border-color: var(--acid);
-    color: var(--off-white);
-    background: rgba(212,245,60,0.05);
-  }
-  .name-tag.highlight {
-    border-color: rgba(212,245,60,0.3);
-    color: var(--acid);
-  }
+  .name-tag:hover { border-color: var(--acid); color: var(--off-white); background: rgba(212,245,60,0.05); }
+  .name-tag.hl { border-color: rgba(212,245,60,0.3); color: var(--acid); }
 
-  /* CONTACT */
-  .contact-section {
-    padding: 120px 48px;
-    background: var(--acid);
-    color: var(--black);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .contact-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    color: var(--black);
-  }
-  .contact-heading em {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: rgba(8,8,8,0.35);
-  }
-
-  .contact-details { display: flex; flex-direction: column; gap: 40px; }
-
-  .contact-person {
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(8,8,8,0.12);
-  }
-  .contact-person:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .contact-role {
-    font-size: 0.6rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(8,8,8,0.45);
-    margin-bottom: 8px;
-  }
-  .contact-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 0.08em;
-    color: var(--black);
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-  .contact-info { display: flex; flex-direction: column; gap: 4px; }
-  .contact-link {
-    font-size: 0.85rem;
-    color: rgba(8,8,8,0.6);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .contact-link:hover { color: var(--black); }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    padding: 48px;
-    border-top: 1px solid rgba(242,237,230,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8rem;
-    letter-spacing: 0.15em;
-    color: var(--off-white);
-    line-height: 1;
-    display: flex;
-    align-items: center;
-  }
-  .footer-logo span { color: var(--acid); }
-  .footer-logo-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    color: var(--text-dim);
-    font-weight: 300;
-    text-transform: uppercase;
-    margin-left: 16px;
-    white-space: nowrap;
-    line-height: 1.4;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    align-items: center;
-  }
-  .footer-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--acid); }
-
-  .footer-social {
-    display: flex;
-    gap: 20px;
-  }
-  .social-link {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(242,237,230,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-  }
-  .social-link:hover {
-    border-color: var(--acid);
-    color: var(--acid);
-  }
-
-  .footer-reg {
-    width: 100%;
-    padding-top: 24px;
-    border-top: 1px solid rgba(242,237,230,0.04);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--text-dim);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* Downloads bar */
+  /* DOWNLOADS */
   .downloads-bar {
     padding: 40px 48px;
     background: rgba(242,237,230,0.02);
@@ -674,7 +438,7 @@
     color: var(--text-dim);
     margin-right: 12px;
   }
-  .download-btn {
+  .dl-btn {
     font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -688,29 +452,127 @@
     align-items: center;
     gap: 8px;
   }
-  .download-btn::before {
-    content: '↓';
-    font-size: 0.8rem;
-    color: var(--acid);
+  .dl-btn::before { content:'↓'; color: var(--acid); }
+  .dl-btn:hover { border-color: var(--acid); background: rgba(212,245,60,0.05); }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 120px 48px;
+    background: var(--acid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
   }
-  .download-btn:hover {
-    border-color: var(--acid);
-    background: rgba(212,245,60,0.05);
+  .contact-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.88;
+    color: var(--black);
+  }
+  .contact-heading em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(8,8,8,0.35);
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 40px; }
+  .contact-person { padding-bottom: 40px; border-bottom: 1px solid rgba(8,8,8,0.12); }
+  .contact-person:last-child { border-bottom: none; padding-bottom: 0; }
+  .contact-role {
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(8,8,8,0.45);
+    margin-bottom: 8px;
+  }
+  .contact-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 4px; }
+  .contact-link { font-size: 0.85rem; color: rgba(8,8,8,0.6); text-decoration: none; transition: color 0.2s; }
+  .contact-link:hover { color: var(--black); }
+
+  /* FOOTER — large integrated logo */
+  footer {
+    background: var(--black);
+    padding: 48px;
+    border-top: 1px solid rgba(242,237,230,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
+    color: var(--off-white);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+  .footer-logo .accent { color: var(--acid); }
+  .footer-logo .sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: 16px;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--acid); }
+  .footer-reg {
+    width: 100%;
+    padding-top: 24px;
+    border-top: 1px solid rgba(242,237,230,0.04);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
+  /* REVEAL */
+  .reveal { opacity:0; transform:translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* MOBILE */
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
+    nav { padding: 16px 24px; }
     .nav-links { display: none; }
+    .nav-logo { font-size: 2.2rem; }
     .hero, .section, .names-section, .contact-section { padding: 80px 24px; }
     .hero { padding-bottom: 40px; }
     .beliefs-grid, .editorial-block, .names-intro, .contact-section { grid-template-columns: 1fr; gap: 40px; }
     .hero-sub { flex-direction: column; align-items: flex-start; gap: 40px; }
-    .hero-stat-group { flex-direction: row; gap: 32px; }
+    .hero-stat-group { gap: 32px; }
     .hero-stat { text-align: left; }
     footer { padding: 32px 24px; }
-    .footer-reg { flex-direction: column; }
-    .reach-section { padding: 80px 24px; }
-    .downloads-bar { padding: 32px 24px; }
+    .footer-logo { font-size: 2rem; }
+    .reach-section, .downloads-bar { padding: 80px 24px; }
   }
 </style>
 </head>
@@ -720,7 +582,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">TIL<span>T</span></a>
+  <a href="#" class="nav-logo">
+    TIL<span class="accent">T</span>
+    <span class="sub">The Unfair<br>Advantage</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#beliefs">Our Beliefs</a></li>
     <li><a href="#impact">Impact</a></li>
@@ -732,17 +597,14 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-noise"></div>
-
   <div class="hero-content">
-    <p class="hero-eyebrow">South Africa's Leading Influencer & Content Agency</p>
+    <p class="hero-eyebrow">South Africa's Leading Influencer &amp; Content Agency</p>
     <h1 class="hero-headline">
       <span class="hero-line">THE</span>
       <span class="hero-line">UNFAIR</span>
       <span class="hero-line">ADVANTAGE</span>
     </h1>
   </div>
-
   <div class="hero-sub">
     <p class="hero-descriptor">
       We build <strong>culture-defining content</strong> for brands that refuse to be ignored — pairing the right voices with the right audiences at the right moment.
@@ -754,11 +616,10 @@
       </div>
       <div class="hero-stat">
         <span class="hero-stat-num">100s</span>
-        <span class="hero-stat-label">Personalities &<br>Influencers</span>
+        <span class="hero-stat-label">Personalities &amp;<br>Influencers</span>
       </div>
     </div>
   </div>
-
   <div class="scroll-indicator">
     <span class="scroll-label">Scroll</span>
     <div class="scroll-line"></div>
@@ -808,7 +669,7 @@
   </div>
 </section>
 
-<!-- EDITORIAL PULL QUOTE -->
+<!-- EDITORIAL -->
 <div class="editorial-block" id="impact">
   <blockquote class="editorial-quote reveal">
     "We don't just connect brands to audiences — we make them part of the culture."
@@ -819,7 +680,7 @@
   </div>
 </div>
 
-<!-- REACH STAT -->
+<!-- REACH -->
 <div class="reach-section">
   <div class="reach-num reveal"><span>90</span>M+</div>
   <p class="reach-desc reveal reveal-delay-1">Organic impressions on our best global campaign</p>
@@ -833,11 +694,11 @@
     <p class="names-body reveal reveal-delay-2">We've had the privilege of working with some of the most recognisable personalities in South Africa and beyond — across sport, entertainment, lifestyle, and culture. Each collaboration is tailored, authentic, and held to the same standard: does this move the needle?</p>
   </div>
   <div class="names-flow reveal">
-    <span class="name-tag highlight">Sir Richard Branson</span>
+    <span class="name-tag hl">Sir Richard Branson</span>
     <span class="name-tag">Caspar Lee</span>
-    <span class="name-tag highlight">Minnie Dlamini</span>
+    <span class="name-tag hl">Minnie Dlamini</span>
     <span class="name-tag">DJ Zinhle</span>
-    <span class="name-tag highlight">Bryan Habana</span>
+    <span class="name-tag hl">Bryan Habana</span>
     <span class="name-tag">The All Blacks</span>
     <span class="name-tag">Maps Maponyane</span>
     <span class="name-tag">+ 100s of Personalities</span>
@@ -847,22 +708,20 @@
 <!-- DOWNLOADS -->
 <div class="downloads-bar">
   <span class="downloads-label">Downloads</span>
-  <a href="https://www.tilt.co.za/wp-content/uploads/2020/03/TILT-2020.pdf" class="download-btn" target="_blank">TILT Overview</a>
-  <a href="https://www.tilt.co.za/wp-content/uploads/2024/01/TILT-Ad-hoc-services-Ts-Cs-16-01-2024.pdf" class="download-btn" target="_blank">Terms & Conditions</a>
+  <a href="https://www.tilt.co.za/wp-content/uploads/2020/03/TILT-2020.pdf" class="dl-btn" target="_blank">TILT Overview</a>
+  <a href="https://www.tilt.co.za/wp-content/uploads/2024/01/TILT-Ad-hoc-services-Ts-Cs-16-01-2024.pdf" class="dl-btn" target="_blank">Terms &amp; Conditions</a>
 </div>
 
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
-  <h2 class="contact-heading">
-    Let's<br><em>talk.</em>
-  </h2>
+  <h2 class="contact-heading">Let's<br><em>talk.</em></h2>
   <div class="contact-details">
     <div class="contact-person">
       <p class="contact-role">Managing Director</p>
       <p class="contact-name">Arye Kellman</p>
       <div class="contact-info">
         <a href="tel:+27845815479" class="contact-link">084 581 5479</a>
-        <a href="/cdn-cgi/l/email-protection#61001318040a2115090415080d150407070402154f020e0c" class="contact-link"><span class="__cf_email__" data-cfemail="a0c1d2d9c5cbe0d4c8c5d4c9ccd4c5c6c6c5c3d48ec3cfcd">[email&#160;protected]</span></a>
+        <a href="mailto:aryek@thetilteffect.com" class="contact-link">aryek@thetilteffect.com</a>
       </div>
     </div>
     <div class="contact-person">
@@ -870,13 +729,13 @@
       <p class="contact-name">Jeanine Rainier</p>
       <div class="contact-info">
         <a href="tel:+27724892757" class="contact-link">072 489 2757</a>
-        <a href="/cdn-cgi/l/email-protection#84eee1e5eaedeae1f6c4f0ece1f0ede8f0e1e2e2e1e7f0aae7ebe9" class="contact-link"><span class="__cf_email__" data-cfemail="076d6266696e69627547736f62736e6b736261616264732964686a">[email&#160;protected]</span></a>
+        <a href="mailto:jeaniner@thetilteffect.com" class="contact-link">jeaniner@thetilteffect.com</a>
       </div>
     </div>
     <div class="contact-person">
       <p class="contact-role">General Enquiries</p>
       <div class="contact-info">
-        <a href="/cdn-cgi/l/email-protection#85ede0e9e9eac5f1ede0f1ece9f1e0e3e3e0e6f1abe6eae8" class="contact-link"><span class="__cf_email__" data-cfemail="056d6069696a45716d60716c69716063636066712b666a68">[email&#160;protected]</span></a>
+        <a href="mailto:hello@thetilteffect.com" class="contact-link">hello@thetilteffect.com</a>
         <span class="contact-link" style="cursor:default;">Investment Place, 111 10th Road, Hyde Park, Johannesburg</span>
       </div>
     </div>
@@ -885,7 +744,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">TIL<span>T</span><span class="footer-logo-sub">The Unfair<br>Advantage</span></div>
+  <div class="footer-logo">
+    TIL<span class="accent">T</span>
+    <span class="sub">The Unfair<br>Advantage</span>
+  </div>
   <ul class="footer-links">
     <li><a href="https://www.linkedin.com/company/thetilteffect/" target="_blank">LinkedIn</a></li>
     <li><a href="https://www.instagram.com/thetilteffect" target="_blank">Instagram</a></li>
@@ -899,12 +761,20 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Custom cursor
+<script>
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    cursor.style.top  = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, .belief-item, .name-tag').forEach(el => {
-    el.addEve
+  document.querySelectorAll('a, .belief-item, .name-tag').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
