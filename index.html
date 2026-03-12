@@ -10,13 +10,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #080808;
-    --off-white: #F2EDE6;
-    --cream: #E8E0D4;
-    --acid: #D4F53C;
-    --warm-mid: #B8A898;
-    --text-dim: #6B6560;
-    --terracotta: #C44A2A;
+    --black:       #080808;
+    --off-white:   #F2EDE6;
+    --cream:       #E8E0D4;
+    --red:         #CC1A1A;        /* brand red — true to logo */
+    --red-dim:     #8B1010;        /* darker red for accents */
+    --terracotta:  #C44A2A;        /* muted for reach section */
+    --warm-mid:    #B8A898;
+    --text-dim:    #6B6560;
   }
 
   html { scroll-behavior: smooth; }
@@ -32,17 +33,17 @@
   .cursor {
     position: fixed;
     width: 12px; height: 12px;
-    background: var(--acid);
+    background: var(--red);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease, height 0.3s ease;
-    mix-blend-mode: difference;
+    mix-blend-mode: screen;
   }
-  .cursor.hover { width: 48px; height: 48px; }
+  .cursor.hover { width: 40px; height: 40px; }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -55,36 +56,21 @@
   nav::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.92) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, transparent 100%);
     pointer-events: none;
   }
 
-  /* V3 NAV LOGO — 3rem, integrated tagline */
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 0.12em;
-    line-height: 1;
-    color: var(--off-white);
     text-decoration: none;
     position: relative;
     z-index: 1;
     display: flex;
     align-items: center;
   }
-  .nav-logo .t { color: var(--acid); }
-  .nav-logo .tagline {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-left: 14px;
-    line-height: 1.5;
-    white-space: nowrap;
-    border-left: 1px solid rgba(242,237,230,0.15);
-    padding-left: 14px;
+  .logo-img {
+    height: 52px;
+    width: auto;
+    display: block;
   }
 
   .nav-links {
@@ -96,20 +82,22 @@
     text-transform: uppercase; color: var(--warm-mid);
     text-decoration: none; transition: color 0.25s;
   }
-  .nav-links a:hover { color: var(--acid); }
+  .nav-links a:hover { color: var(--off-white); }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid; grid-template-rows: 1fr auto;
     padding: 0 48px 60px;
     position: relative; overflow: hidden;
   }
+
+  /* Subtle red grid */
   .hero-bg {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(212,245,60,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212,245,60,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(204,26,26,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(204,26,26,0.04) 1px, transparent 1px);
     background-size: 80px 80px;
     animation: gridDrift 40s linear infinite;
   }
@@ -117,13 +105,23 @@
     0%   { transform: translate(0,0); }
     100% { transform: translate(80px,80px); }
   }
+
+  /* Red glow in top-left corner */
+  .hero-glow {
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(204,26,26,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
   .hero-content {
     display: flex; flex-direction: column; justify-content: flex-end;
     padding-top: 140px; position: relative; z-index: 2;
   }
   .hero-eyebrow {
     font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--acid); margin-bottom: 24px;
+    color: var(--red); margin-bottom: 24px;
     opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards;
   }
   .hero-headline {
@@ -141,13 +139,14 @@
   .hero-line:nth-child(3) {
     animation-delay: 0.9s;
     color: transparent;
-    -webkit-text-stroke: 1px var(--off-white);
+    -webkit-text-stroke: 1px rgba(242,237,230,0.4);
   }
   @keyframes slideUp { to { opacity:1; transform:translateY(0); } }
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(20px); }
     to   { opacity:1; transform:translateY(0); }
   }
+
   .hero-sub {
     display: flex; justify-content: space-between; align-items: flex-end;
     margin-top: 64px; opacity: 0;
@@ -160,9 +159,11 @@
   .hero-stat { text-align: right; }
   .hero-stat-num {
     font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
-    color: var(--acid); line-height: 1; display: block;
+    color: var(--red); line-height: 1; display: block;
+    text-shadow: 0 0 20px rgba(204,26,26,0.4);
   }
   .hero-stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+
   .scroll-indicator {
     position: absolute; bottom: 60px; left: 50%;
     transform: translateX(-50%);
@@ -171,36 +172,45 @@
   }
   .scroll-line {
     width: 1px; height: 60px;
-    background: linear-gradient(to bottom, var(--acid), transparent);
+    background: linear-gradient(to bottom, var(--red), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
   @keyframes scrollPulse {
     0%,100% { transform:scaleY(1); opacity:1; }
-    50%      { transform:scaleY(0.6); opacity:0.4; }
+    50%      { transform:scaleY(0.6); opacity:0.3; }
   }
   .scroll-label {
     font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--text-dim); writing-mode: vertical-rl;
   }
 
-  /* MARQUEE */
-  .marquee-section { overflow: hidden; padding: 20px 0; background: var(--acid); }
-  .marquee-track { display: flex; animation: marquee 18s linear infinite; white-space: nowrap; }
+  /* ── MARQUEE — red on black ── */
+  .marquee-section {
+    overflow: hidden; padding: 18px 0;
+    background: var(--red);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .marquee-track {
+    display: flex; animation: marquee 18s linear infinite; white-space: nowrap;
+  }
   .marquee-item {
     font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
-    letter-spacing: 0.15em; color: var(--black); padding: 0 40px; flex-shrink: 0;
+    letter-spacing: 0.15em; color: var(--black);
+    padding: 0 40px; flex-shrink: 0;
   }
-  .marquee-dot { font-size: 1.4rem; color: rgba(8,8,8,0.3); flex-shrink: 0; line-height: 1; padding-right: 40px; }
+  .marquee-dot { font-size: 1.2rem; color: rgba(8,8,8,0.35); flex-shrink: 0; line-height: 1; padding-right: 40px; }
   @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-  /* BELIEFS */
+  /* ── BELIEFS ── */
   .section { padding: 120px 48px; }
   .section-label {
     font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--acid); margin-bottom: 64px;
+    color: var(--red); margin-bottom: 64px;
     display: flex; align-items: center; gap: 16px;
   }
-  .section-label::before { content:''; width:40px; height:1px; background:var(--acid); }
+  .section-label::before { content:''; width:40px; height:1px; background:var(--red); }
+
   .beliefs-grid { display: grid; grid-template-columns: 1fr 1fr; }
   .belief-item {
     padding: 48px; border: 1px solid rgba(242,237,230,0.06);
@@ -208,14 +218,14 @@
   }
   .belief-item::before {
     content:''; position:absolute; inset:0;
-    background: linear-gradient(135deg, rgba(212,245,60,0.04) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(204,26,26,0.06) 0%, transparent 60%);
     opacity:0; transition: opacity 0.4s;
   }
-  .belief-item:hover { border-color: rgba(212,245,60,0.25); }
+  .belief-item:hover { border-color: rgba(204,26,26,0.3); }
   .belief-item:hover::before { opacity:1; }
   .belief-num {
     font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
-    color: rgba(242,237,230,0.05); line-height: 1; margin-bottom: 24px; display: block;
+    color: rgba(204,26,26,0.08); line-height: 1; margin-bottom: 24px; display: block;
   }
   .belief-title {
     font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
@@ -223,7 +233,7 @@
   }
   .belief-body { font-size: 0.9rem; line-height: 1.75; color: var(--text-dim); }
 
-  /* EDITORIAL */
+  /* ── EDITORIAL ── */
   .editorial-block {
     padding: 100px 48px; border-top: 1px solid rgba(242,237,230,0.06);
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -234,12 +244,13 @@
     position: relative; padding-left: 32px;
   }
   .editorial-quote::before {
-    content:''; position:absolute; left:0; top:8px; bottom:8px; width:3px; background:var(--acid);
+    content:''; position:absolute; left:0; top:8px; bottom:8px;
+    width:3px; background:var(--red);
   }
   .editorial-body { font-size: 0.95rem; line-height: 1.85; color: var(--text-dim); }
   .editorial-body p + p { margin-top: 20px; }
 
-  /* V3 REACH — warm cream background, terracotta (NOT hot red) */
+  /* ── REACH — warm cream bg, terracotta (V3: NOT hot red) ── */
   .reach-section {
     padding: 120px 48px;
     background: var(--cream);
@@ -258,6 +269,7 @@
     color: var(--black); letter-spacing: -0.02em;
     position: relative; z-index: 1;
   }
+  /* V3: muted terracotta, not hot red */
   .reach-num span { color: var(--terracotta); }
   .reach-desc {
     font-size: 1rem; color: var(--text-dim); margin-top: 24px;
@@ -268,7 +280,7 @@
     color: rgba(8,8,8,0.35); margin-top: 8px; position: relative; z-index: 1;
   }
 
-  /* NAMES */
+  /* ── NAMES ── */
   .names-section { padding: 120px 48px; border-top: 1px solid rgba(242,237,230,0.06); }
   .names-intro {
     display: grid; grid-template-columns: 1fr 1.6fr;
@@ -282,13 +294,13 @@
   .names-flow { display: flex; flex-wrap: wrap; gap: 12px; }
   .name-tag {
     font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.08em;
-    padding: 10px 24px; border: 1px solid rgba(242,237,230,0.12); border-radius: 2px;
+    padding: 10px 24px; border: 1px solid rgba(242,237,230,0.1); border-radius: 2px;
     color: var(--warm-mid); transition: all 0.25s; white-space: nowrap;
   }
-  .name-tag:hover { border-color: var(--acid); color: var(--off-white); background: rgba(212,245,60,0.05); }
-  .name-tag.hl { border-color: rgba(212,245,60,0.3); color: var(--acid); }
+  .name-tag:hover { border-color: var(--red); color: var(--off-white); background: rgba(204,26,26,0.06); }
+  .name-tag.hl { border-color: rgba(204,26,26,0.4); color: var(--red); }
 
-  /* DOWNLOADS */
+  /* ── DOWNLOADS ── */
   .downloads-bar {
     padding: 40px 48px; background: rgba(242,237,230,0.02);
     border-top: 1px solid rgba(242,237,230,0.06);
@@ -298,29 +310,34 @@
   .dl-btn {
     font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--off-white); text-decoration: none; padding: 10px 20px;
-    border: 1px solid rgba(242,237,230,0.15); border-radius: 2px;
+    border: 1px solid rgba(242,237,230,0.12); border-radius: 2px;
     transition: all 0.25s; display: flex; align-items: center; gap: 8px;
   }
-  .dl-btn::before { content:'↓'; color: var(--acid); }
-  .dl-btn:hover { border-color: var(--acid); background: rgba(212,245,60,0.05); }
+  .dl-btn::before { content:'↓'; color: var(--red); }
+  .dl-btn:hover { border-color: var(--red); background: rgba(204,26,26,0.06); }
 
-  /* CONTACT */
+  /* ── CONTACT — red background ── */
   .contact-section {
-    padding: 120px 48px; background: var(--acid);
+    padding: 120px 48px; background: var(--red);
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
-  .contact-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 8rem); line-height: 0.88; color: var(--black); }
-  .contact-heading em { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(8,8,8,0.35); }
+  .contact-heading {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.88; color: var(--black);
+  }
+  .contact-heading em {
+    font-family: 'Playfair Display', serif; font-style: italic; color: rgba(8,8,8,0.4);
+  }
   .contact-details { display: flex; flex-direction: column; gap: 40px; }
-  .contact-person { padding-bottom: 40px; border-bottom: 1px solid rgba(8,8,8,0.12); }
+  .contact-person { padding-bottom: 40px; border-bottom: 1px solid rgba(8,8,8,0.15); }
   .contact-person:last-child { border-bottom: none; padding-bottom: 0; }
-  .contact-role { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(8,8,8,0.45); margin-bottom: 8px; }
+  .contact-role { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(8,8,8,0.5); margin-bottom: 8px; }
   .contact-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.08em; color: var(--black); line-height: 1; margin-bottom: 12px; }
   .contact-info { display: flex; flex-direction: column; gap: 4px; }
-  .contact-link { font-size: 0.85rem; color: rgba(8,8,8,0.6); text-decoration: none; transition: color 0.2s; }
+  .contact-link { font-size: 0.85rem; color: rgba(8,8,8,0.65); text-decoration: none; transition: color 0.2s; }
   .contact-link:hover { color: var(--black); }
 
-  /* V3 FOOTER — 2.8rem logo, integrated tagline */
+  /* ── FOOTER — V3: 2.8rem logo, integrated tagline ── */
   footer {
     background: var(--black); padding: 48px;
     border-top: 1px solid rgba(242,237,230,0.06);
@@ -328,21 +345,19 @@
     flex-wrap: wrap; gap: 24px;
   }
   .footer-logo {
-    font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
-    letter-spacing: 0.12em; color: var(--off-white); line-height: 1;
-    display: flex; align-items: center;
+    display: flex;
+    align-items: center;
   }
-  .footer-logo .t { color: var(--acid); }
-  .footer-logo .tagline {
-    font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 300;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
-    margin-left: 14px; line-height: 1.5; white-space: nowrap;
-    border-left: 1px solid rgba(242,237,230,0.12); padding-left: 14px;
+  .footer-logo .logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
   }
   .footer-links { display: flex; gap: 32px; list-style: none; }
   .footer-links a { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--acid); }
-  /* V3 COPYRIGHT — 2026 */
+  .footer-links a:hover { color: var(--off-white); }
+
+  /* V3: ©2026 */
   .footer-reg {
     width: 100%; padding-top: 24px;
     border-top: 1px solid rgba(242,237,230,0.04);
@@ -355,6 +370,7 @@
   .reveal.visible { opacity:1; transform:translateY(0); }
   .d1 { transition-delay:0.1s; } .d2 { transition-delay:0.2s; } .d3 { transition-delay:0.3s; }
 
+  /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -374,10 +390,10 @@
 
 <div class="cursor" id="cursor"></div>
 
+<!-- NAV: V3 logo — 3rem + tagline -->
 <nav>
   <a href="#" class="nav-logo">
-    TIL<span class="t">T</span>
-    <span class="tagline">The Unfair<br>Advantage</span>
+    <img src="TILT_Logo.png" alt="TILT" class="logo-img">
   </a>
   <ul class="nav-links">
     <li><a href="#beliefs">Our Beliefs</a></li>
@@ -387,8 +403,10 @@
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">South Africa's Leading Influencer &amp; Content Agency</p>
     <h1 class="hero-headline">
@@ -416,6 +434,7 @@
   </div>
 </section>
 
+<!-- MARQUEE: red band -->
 <div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">INFLUENCER MARKETING</span><span class="marquee-dot">·</span>
@@ -431,6 +450,7 @@
   </div>
 </div>
 
+<!-- BELIEFS -->
 <section class="section" id="beliefs">
   <p class="section-label reveal">Our Belief System</p>
   <div class="beliefs-grid">
@@ -457,6 +477,7 @@
   </div>
 </section>
 
+<!-- EDITORIAL -->
 <div class="editorial-block" id="impact">
   <blockquote class="editorial-quote reveal">"We don't just connect brands to audiences — we make them part of the culture."</blockquote>
   <div class="editorial-body reveal d2">
@@ -465,12 +486,14 @@
   </div>
 </div>
 
+<!-- REACH: V3 cream background, terracotta number -->
 <div class="reach-section">
   <div class="reach-num reveal"><span>90</span>M+</div>
   <p class="reach-desc reveal d1">Organic impressions on our best global campaign</p>
   <p class="reach-sub reveal d2">Measured, verified, repeatable</p>
 </div>
 
+<!-- NAMES -->
 <section class="names-section" id="names">
   <div class="names-intro">
     <h2 class="names-heading reveal">Experience<br>that<br>speaks.</h2>
@@ -488,12 +511,14 @@
   </div>
 </section>
 
+<!-- DOWNLOADS -->
 <div class="downloads-bar">
   <span class="downloads-label">Downloads</span>
   <a href="https://www.tilt.co.za/wp-content/uploads/2020/03/TILT-2020.pdf" class="dl-btn" target="_blank">TILT Overview</a>
   <a href="https://www.tilt.co.za/wp-content/uploads/2024/01/TILT-Ad-hoc-services-Ts-Cs-16-01-2024.pdf" class="dl-btn" target="_blank">Terms &amp; Conditions</a>
 </div>
 
+<!-- CONTACT: red section -->
 <section class="contact-section" id="contact">
   <h2 class="contact-heading">Let's<br><em>talk.</em></h2>
   <div class="contact-details">
@@ -523,10 +548,10 @@
   </div>
 </section>
 
+<!-- FOOTER: V3 — 2.8rem logo + tagline -->
 <footer>
   <div class="footer-logo">
-    TIL<span class="t">T</span>
-    <span class="tagline">The Unfair<br>Advantage</span>
+    <img src="TILT_Logo.png" alt="TILT" class="logo-img">
   </div>
   <ul class="footer-links">
     <li><a href="https://www.linkedin.com/company/thetilteffect/" target="_blank">LinkedIn</a></li>
@@ -535,6 +560,7 @@
     <li><a href="https://twitter.com/thetilteffect" target="_blank">X / Twitter</a></li>
     <li><a href="https://www.tilt.co.za/?page_id=126" target="_blank">Privacy</a></li>
   </ul>
+  <!-- V3: copyright 2026 -->
   <div class="footer-reg">
     <span>TILT Culture (Pty) Ltd · Reg: 2017/186192/07 · PO Box 3166, Pinegowrie, Johannesburg 2123</span>
     <span>©2026 TILT — The Unfair Advantage</span>
